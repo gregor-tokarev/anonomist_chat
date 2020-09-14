@@ -39,7 +39,8 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.2.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -53,20 +54,34 @@
       <workItem from="1599982883980" duration="14075000" />
       <workItem from="1600057827804" duration="1996000" />
       <workItem from="1600060366225" duration="85000" />
+      <workItem from="1600069154389" duration="6063000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/anonomist_chat_client" />
+      <path value="$PROJECT_DIR$/anunomist_chat_server" />
+      <path value="$PROJECT_DIR$/client" />
+      <path value="$PROJECT_DIR$/server" />
+    </ignored-roots>
+  </component>
   <component name="WindowStateProjectService">
     <state x="690" y="288" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599985349774">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="288" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1599985349774" />
-    <state x="834" y="414" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup" timestamp="1600013096991">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="184" y="28" key="SettingsEditor" timestamp="1600069170359">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state x="184" y="28" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1600069170359" />
+    <state x="593" y="294" width="198" height="198" key="jetbrains.javascript.buildTools.run-task-popup" timestamp="1600072223759">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="593" y="294" width="198" height="198" key="jetbrains.javascript.buildTools.run-task-popup/0.0.1366.768@0.0.1366.768" timestamp="1600072223759" />
     <state x="834" y="414" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup/0.0.1920.1080@0.0.1920.1080" timestamp="1600013096991" />
   </component>
 </project>

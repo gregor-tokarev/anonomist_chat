@@ -17,6 +17,10 @@ export default {
     messages: [],
     message: ''
   }),
+  beforeRouteLeave(to, from, next) {
+    connection.emit('leaveChat')
+    next()
+  },
   mounted() {
     connection.on('messageFormServer', message => {
       this.messages.push(message.message)
@@ -24,12 +28,12 @@ export default {
     connection.emit('requestReconnect', this.$route.query.chatId)
 
     connection.on('partnerLeave', () => {
-      console.log('leave')
       connection.emit('leaveChat', this.$route.query.chatId)
+      this.$router.replace({ name: 'choose' })
     })
 
     window.addEventListener('beforeunload', function() {
-      connection.emit('leaveChat')
+      connection.emit('leaveChat', this.$route.query.chatId)
       return 'Вы точно хотите уйти?'
     })
   },
@@ -37,6 +41,7 @@ export default {
     sendMessage() {
       const chatId = this.$route.query.chatId
       connection.emit('message', { message: this.message, chat: { id: chatId } })
+      this.message = ''
     }
   }
 }

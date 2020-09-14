@@ -1,0 +1,8 @@
+{
+  "name": "anonomist_chat",
+  "version": "1.0.0",
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "build:front": "cd client && npm run build"
+  }
+}
