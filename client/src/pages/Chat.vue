@@ -27,11 +27,6 @@ export default {
       console.log('leave')
       connection.emit('leaveChat', this.$route.query.chatId)
     })
-
-    window.addEventListener('beforeunload', function() {
-      connection.emit('leaveChat')
-      return 'Вы точно хотите уйти?'
-    })
   },
   methods: {
     sendMessage() {

@@ -10,6 +10,7 @@ io.on('connection', socket => {
     let user;
     let randomUser;
     let chat;
+    
     usersInfo.free++;
     usersInfo.online++;
     io.sockets.emit('usersInfo', usersInfo);
@@ -18,7 +19,10 @@ io.on('connection', socket => {
         usersInfo.free--;
         usersInfo.online--;
         io.sockets.emit('usersInfo', usersInfo);
+        randomUser && socket.to(randomUser.socketId).emit('partnerLeave')
         user = null;
+        randomUser = null;
+        chat = null;
     });
     socket.on('joinSearch', userData => {
         user = new User(userData.age, userData.gender, userData.preferAge, userData.preferGender, socket.id);
@@ -42,6 +46,7 @@ io.on('connection', socket => {
     });
     
     socket.on('joinChat', ({ id }, cb) => {
+        usersInfo.free--;
         socket.join(id);
         cb();
     });

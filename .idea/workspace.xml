@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3989735f-af3a-43b5-8842-9891b89aba27" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Chat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Chat.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/sockets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sockets/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +37,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Portfolio/howdy-final/howdy" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -53,17 +56,39 @@
       <workItem from="1599982883980" duration="14075000" />
       <workItem from="1600057827804" duration="1996000" />
       <workItem from="1600060366225" duration="85000" />
+      <workItem from="1600060551382" duration="2382000" />
+      <workItem from="1600143503528" duration="353000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/anonomist_chat_client" />
+      <path value="$PROJECT_DIR$/anunomist_chat_server" />
+      <path value="$PROJECT_DIR$/client" />
+      <path value="$PROJECT_DIR$/server" />
+    </ignored-roots>
+  </component>
   <component name="WindowStateProjectService">
+    <state x="552" y="236" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600143507994">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="552" y="236" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1600143507994" />
     <state x="690" y="288" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599985349774">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="288" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1599985349774" />
+    <state x="740" y="295" key="FileChooserDialogImpl" timestamp="1600143855187">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="740" y="295" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1600143855187" />
+    <state x="498" y="186" key="SettingsEditor" timestamp="1600061024285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="498" y="186" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1600061024285" />
     <state x="834" y="414" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup" timestamp="1600013096991">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
