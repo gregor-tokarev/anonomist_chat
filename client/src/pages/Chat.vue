@@ -18,24 +18,26 @@ export default {
     message: ''
   }),
   beforeRouteLeave(to, from, next) {
-    connection.emit('leaveChat')
+    window.onbeforeunload = undefined
+    connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
     next()
   },
   mounted() {
     connection.on('messageFormServer', message => {
       this.messages.push(message.message)
     })
+
     connection.emit('requestReconnect', this.$route.query.chatId)
 
     connection.on('partnerLeave', () => {
-      connection.emit('leaveChat', this.$route.query.chatId)
+      connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
       this.$router.replace({ name: 'choose' })
     })
 
-    window.addEventListener('beforeunload', function() {
-      connection.emit('leaveChat', this.$route.query.chatId)
-      return 'Вы точно хотите уйти?'
-    })
+    window.onbeforeunload = function() {
+      connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
+      return false
+    }
   },
   methods: {
     sendMessage() {

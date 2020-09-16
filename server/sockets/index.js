@@ -1,4 +1,4 @@
-const { users, waitingUsers } = require('../data');
+const { users, waitingUsers, chats } = require('../data');
 const { getIo } = require('../core/SocketManager');
 const Chat = require('../core/Chat');
 const User = require('../core/User');
@@ -47,15 +47,18 @@ io.on('connection', socket => {
     
   });
   
-  socket.on('joinChat', ({ id }, cb) => {
+  socket.on('joinChat', (chatData, cb) => {
     console.log('JoinCat:');
     console.log(user);
     user.free = false;
-    socket.join(id);
+    chat = chatData;
+    socket.join(chatData.id);
     cb();
   });
   
-  socket.on('requestReconnect', chatId => {
+  socket.on('requestReconnect', (chatId, cb) => {
+    console.log('Refresh:');
+    console.log(chat);
     socket.join(chatId);
   })
   
@@ -69,14 +72,16 @@ io.on('connection', socket => {
     io.to(data.chat.id).emit('messageFormServer', message);
   });
   
-  socket.on('leaveChat', chatId => {
+  socket.on('leaveChat', data => {
+    console.log('Leave chat:');
+    console.log(data);
     usersInfo.free++;
     io.sockets.emit('usersInfo', usersInfo);
-    socket.leave(chatId);
-    console.log('LeaveChat:');
-    console.log(chat);
+    socket.leave(data.chatId);
+    // console.log('LeaveChat:');
+    // console.log(chat);
     if (chat) {
-      io.to(chat.opponent.socketId).emit('partnerLeave', chatId);
+      data.first && io.to(chat.id).emit('partnerLeave', data.chatId);
       const userIndex = waitingUsers.findIndex(user => user.id === chat.you.id);
       waitingUsers.splice(userIndex, 1);
     }

@@ -35,7 +35,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Portfolio" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -56,6 +56,11 @@
       <workItem from="1600057827804" duration="1996000" />
       <workItem from="1600060366225" duration="85000" />
       <workItem from="1600069154389" duration="7966000" />
+      <workItem from="1600094697067" duration="73000" />
+      <workItem from="1600153173385" duration="7027000" />
+      <workItem from="1600238439179" duration="13000" />
+      <workItem from="1600238482053" duration="9000" />
+      <workItem from="1600238576123" duration="1686000" />
     </task>
     <servers />
   </component>
@@ -75,6 +80,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="690" y="288" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1599985349774" />
+    <state x="463" y="138" key="FileChooserDialogImpl" timestamp="1600240267337">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="463" y="138" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1600240267337" />
     <state x="184" y="28" key="SettingsEditor" timestamp="1600069170359">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
