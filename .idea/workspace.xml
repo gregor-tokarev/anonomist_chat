@@ -13,8 +13,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Vue Single File Component" />
         <option value="package.json" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -35,7 +35,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Portfolio" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -61,6 +61,8 @@
       <workItem from="1600238439179" duration="13000" />
       <workItem from="1600238482053" duration="9000" />
       <workItem from="1600238576123" duration="1686000" />
+      <workItem from="1600273953663" duration="1997000" />
+      <workItem from="1600425448877" duration="2178000" />
     </task>
     <servers />
   </component>
