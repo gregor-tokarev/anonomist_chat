@@ -6,19 +6,32 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    users: {}
+    users: {},
+    messages: []
   },
   mutations: {
     SET_USERS_INFO(state, value) {
       Vue.set(state, 'users', value)
+    },
+    ADD_MESSAGE(state, message) {
+      state.messages.push(message)
     }
   },
   actions: {
-    setUsersInfo(cxt, users) {
+    setUsersInfo({ commit }, users) {
       connection.on('usersInfo', info => {
-        cxt.commit('SET_USERS_INFO', info)
+        commit('SET_USERS_INFO', info)
+      })
+    },
+    startChat({ commit }) {
+      connection.on('messageFormServer', message => {
+        commit('ADD_MESSAGE', message)
       })
     }
   },
-  getters: {}
+  getters: {
+    messages(state) {
+      return state.messages
+    }
+  }
 })

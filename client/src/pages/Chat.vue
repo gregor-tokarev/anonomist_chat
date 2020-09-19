@@ -1,7 +1,7 @@
 <template>
   <div class="chat">
-    <Message v-for="(message, index) in messages" :key="index" :text="message"></Message>
-    <input type="text" v-model.trim="message" @keydown.enter="sendMessage">
+    <Message v-for="(message, index) in messages" :key="index" :text="message.message"></Message>
+    <Input @enter="sendMessage" />
   </div>
 </template>
 
@@ -9,23 +9,20 @@
 
 import Message from '../components/Message'
 import connection from '../assets/js/socket'
+import Input from '../components/MessageInput'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Chat',
-  components: { Message },
+  components: { Input, Message },
   data: () => ({
-    messages: [],
-    message: ''
   }),
   beforeRouteLeave(to, from, next) {
-    window.onbeforeunload = undefined
     connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
     next()
   },
   mounted() {
-    connection.on('messageFormServer', message => {
-      this.messages.push(message.message)
-    })
+    this.startChat()
 
     connection.emit('requestReconnect', this.$route.query.chatId)
 
@@ -33,16 +30,15 @@ export default {
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
       this.$router.replace({ name: 'choose' })
     })
-
-    window.onbeforeunload = function() {
-      connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
-      return false
-    }
+  },
+  computed: {
+    ...mapGetters(['messages'])
   },
   methods: {
-    sendMessage() {
+    ...mapActions(['startChat']),
+    sendMessage(value) {
       const chatId = this.$route.query.chatId
-      connection.emit('message', { message: this.message, chat: { id: chatId } })
+      connection.emit('message', { message: value, chat: { id: chatId } })
       this.message = ''
     }
   }

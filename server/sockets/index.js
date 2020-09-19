@@ -17,13 +17,6 @@ io.on('connection', socket => {
   socket.on('disconnect', () => {
     usersInfo.free--;
     usersInfo.online--;
-    console.log('Disconnect:');
-    console.log(chat);
-    if (chat) {
-      io.to(chat.opponent.socketId).emit('partnerLeave');
-      const userIndex = waitingUsers.findIndex(user => user.id === chat.you.id);
-      waitingUsers.splice(userIndex, 1);
-    }
     io.sockets.emit('usersInfo', usersInfo);
   });
   socket.on('joinSearch', userData => {
