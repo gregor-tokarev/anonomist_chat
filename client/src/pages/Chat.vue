@@ -1,7 +1,7 @@
 <template>
   <div class="chat">
     <Message v-for="(message, index) in messages" :key="index" :text="message.message"></Message>
-    <Input @enter="sendMessage" />
+    <MessageInput></MessageInput>
   </div>
 </template>
 
@@ -9,38 +9,36 @@
 
 import Message from '../components/Message'
 import connection from '../assets/js/socket'
-import Input from '../components/MessageInput'
 import { mapActions, mapGetters } from 'vuex'
+import MessageInput from '@/components/MessageInput'
 
 export default {
   name: 'Chat',
-  components: { Input, Message },
+  components: { MessageInput, Message },
   data: () => ({
   }),
   beforeRouteLeave(to, from, next) {
     connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
+    this.clearMessages()
     next()
   },
   mounted() {
-    this.startChat()
+    sessionStorage.setItem('chatId', this.$route.query.chatId)
 
-    connection.emit('requestReconnect', this.$route.query.chatId)
+    this.startAddingMessages()
+
+    sessionStorage.getItem('chatId') && connection.emit('requestReconnect', this.$route.query.chatId)
 
     connection.on('partnerLeave', () => {
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
       this.$router.replace({ name: 'choose' })
     })
   },
+  methods: {
+    ...mapActions(['startAddingMessages', 'clearMessages'])
+  },
   computed: {
     ...mapGetters(['messages'])
-  },
-  methods: {
-    ...mapActions(['startChat']),
-    sendMessage(value) {
-      const chatId = this.$route.query.chatId
-      connection.emit('message', { message: value, chat: { id: chatId } })
-      this.message = ''
-    }
   }
 }
 </script>

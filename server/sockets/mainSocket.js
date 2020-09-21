@@ -19,7 +19,10 @@ io.on('connection', socket => {
     usersInfo.online--;
     io.sockets.emit('usersInfo', usersInfo);
   });
+  
   socket.on('joinSearch', userData => {
+    console.log('JoinSearch:')
+    console.log(chat, user, randomUser)
     user = new User(userData.age, userData.gender, userData.preferAge, userData.preferGender, socket.id);
     users.push(user);
     const allowUsers = waitingUsers.filter(u => u.free &&
@@ -62,6 +65,7 @@ io.on('connection', socket => {
       message: data.message,
       author: data.author
     }
+  
     io.to(data.chat.id).emit('messageFormServer', message);
   });
   
@@ -71,12 +75,13 @@ io.on('connection', socket => {
     usersInfo.free++;
     io.sockets.emit('usersInfo', usersInfo);
     socket.leave(data.chatId);
-    // console.log('LeaveChat:');
-    // console.log(chat);
     if (chat) {
       data.first && io.to(chat.id).emit('partnerLeave', data.chatId);
       const userIndex = waitingUsers.findIndex(user => user.id === chat.you.id);
       waitingUsers.splice(userIndex, 1);
+      chat = null;
+      user = null;
+      randomUser = null;
     }
   });
   

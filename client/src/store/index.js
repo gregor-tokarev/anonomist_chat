@@ -15,18 +15,24 @@ export default new Vuex.Store({
     },
     ADD_MESSAGE(state, message) {
       state.messages.push(message)
+    },
+    CLEAR_MESSAGES(state) {
+      state.messages = []
     }
   },
   actions: {
-    setUsersInfo({ commit }, users) {
+    setUsersInfo({ commit }) {
       connection.on('usersInfo', info => {
         commit('SET_USERS_INFO', info)
       })
     },
-    startChat({ commit }) {
+    startAddingMessages({ commit }) {
       connection.on('messageFormServer', message => {
         commit('ADD_MESSAGE', message)
       })
+    },
+    clearMessages({ commit }) {
+      commit('CLEAR_MESSAGES')
     }
   },
   getters: {

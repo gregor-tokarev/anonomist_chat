@@ -11,4 +11,4 @@ const { setIo } = require('./core/SocketManager');
 const server = app.listen(8000);
 const io = new SocketServer(server);
 setIo(io);
-require('./sockets/index');
+require('./sockets/mainSocket');
