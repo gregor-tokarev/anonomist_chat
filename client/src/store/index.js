@@ -14,7 +14,11 @@ export default new Vuex.Store({
       Vue.set(state, 'users', value)
     },
     ADD_MESSAGE(state, message) {
+      console.log(message)
       state.messages.push(message)
+    },
+    CLEAR_MESSAGES(state) {
+      state.messages = []
     }
   },
   actions: {
@@ -27,6 +31,9 @@ export default new Vuex.Store({
       connection.on('messageFormServer', message => {
         commit('ADD_MESSAGE', message)
       })
+    },
+    clearMessages({ commit }) {
+      commit('CLEAR_MESSAGES')
     }
   },
   getters: {

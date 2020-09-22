@@ -15,18 +15,19 @@ import MessageInput from '@/components/MessageInput'
 export default {
   name: 'Chat',
   components: { MessageInput, Message },
-  data: () => ({
-  }),
+  data: () => ({}),
   beforeRouteLeave(to, from, next) {
     connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
+    this.clearMessages()
+    sessionStorage.removeItem('chatId')
     next()
   },
   mounted() {
     sessionStorage.setItem('chatId', this.$route.query.chatId)
-
+    console.log('Mounted')
     this.startAddingMessages()
 
-    sessionStorage.getItem('chatId') && connection.emit('requestReconnect', this.$route.query.chatId)
+    sessionStorage.getItem('chatId') && connection.emit('requestReconnect', sessionStorage.getItem('chatId'))
 
     connection.on('partnerLeave', () => {
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
@@ -34,7 +35,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['startAddingMessages'])
+    ...mapActions(['startAddingMessages', 'clearMessages'])
   },
   computed: {
     ...mapGetters(['messages'])

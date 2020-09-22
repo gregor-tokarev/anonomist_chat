@@ -1,6 +1,6 @@
 <template>
   <div class="input">
-    <input type="text" v-model="message" @keydown.enter="$emit('enterMessage', message)" class="input__input">
+    <input type="text" v-model.trim="message" @keydown.enter="sendMessage" class="input__input">
   </div>
 </template>
 

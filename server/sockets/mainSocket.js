@@ -1,4 +1,4 @@
-const { users, waitingUsers, chats } = require('../data');
+const { users, waitingUsers } = require('../data');
 const { getIo } = require('../core/SocketManager');
 const Chat = require('../core/Chat');
 const User = require('../core/User');
@@ -19,7 +19,10 @@ io.on('connection', socket => {
     usersInfo.online--;
     io.sockets.emit('usersInfo', usersInfo);
   });
+  
   socket.on('joinSearch', userData => {
+    console.log('JoinSearch:')
+    console.log(chat, user, randomUser)
     user = new User(userData.age, userData.gender, userData.preferAge, userData.preferGender, socket.id);
     users.push(user);
     const allowUsers = waitingUsers.filter(u => u.free &&
@@ -49,20 +52,19 @@ io.on('connection', socket => {
     cb();
   });
   
-  socket.on('requestReconnect', (chatId, cb) => {
-    console.log('Refresh:');
-    console.log(chat);
-    socket.join(chatId);
-  })
+  // socket.on('requestReconnect', (chatId, cb) => {
+  //   console.log('Refresh:');
+  //   console.log(chat);
+  //   // socket.join(chatId);
+  // })
   
   socket.on('message', data => {
     console.log('Message:');
-    console.log(chat);
     const message = {
       message: data.message,
       author: data.author
     }
-  
+    console.log(message)
     io.to(data.chat.id).emit('messageFormServer', message);
   });
   
@@ -72,12 +74,13 @@ io.on('connection', socket => {
     usersInfo.free++;
     io.sockets.emit('usersInfo', usersInfo);
     socket.leave(data.chatId);
-    // console.log('LeaveChat:');
-    // console.log(chat);
     if (chat) {
       data.first && io.to(chat.id).emit('partnerLeave', data.chatId);
       const userIndex = waitingUsers.findIndex(user => user.id === chat.you.id);
       waitingUsers.splice(userIndex, 1);
+      chat = null;
+      user = null;
+      randomUser = null;
     }
   });
   
