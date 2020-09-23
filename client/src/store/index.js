@@ -14,7 +14,7 @@ export default new Vuex.Store({
       Vue.set(state, 'users', value)
     },
     ADD_MESSAGE(state, message) {
-      console.log(message)
+      console.log('message')
       state.messages.push(message)
     },
     CLEAR_MESSAGES(state) {

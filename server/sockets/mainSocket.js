@@ -7,6 +7,7 @@ const usersInfo = { free: -1, online: -1 }
 const io = getIo();
 
 io.on('connection', socket => {
+  console.log(`${ socket.id } connected`)
   let user;
   let randomUser;
   let chat;
@@ -69,11 +70,11 @@ io.on('connection', socket => {
   });
   
   socket.on('leaveChat', data => {
-    console.log('Leave chat:');
-    console.log(data);
+    // console.log('Leave chat:');
+    // console.log(data);
     usersInfo.free++;
     io.sockets.emit('usersInfo', usersInfo);
-    socket.leave(data.chatId);
+    socket.leave(data.chatId, () => console.log(`${socket.id} leave`));
     if (chat) {
       data.first && io.to(chat.id).emit('partnerLeave', data.chatId);
       const userIndex = waitingUsers.findIndex(user => user.id === chat.you.id);

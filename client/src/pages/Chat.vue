@@ -17,6 +17,7 @@ export default {
   components: { MessageInput, Message },
   data: () => ({}),
   beforeRouteLeave(to, from, next) {
+    connection.off('message')
     connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
     this.clearMessages()
     sessionStorage.removeItem('chatId')
@@ -30,6 +31,7 @@ export default {
     sessionStorage.getItem('chatId') && connection.emit('requestReconnect', sessionStorage.getItem('chatId'))
 
     connection.on('partnerLeave', () => {
+      connection.off('message')
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
       this.$router.replace({ name: 'choose' })
     })
