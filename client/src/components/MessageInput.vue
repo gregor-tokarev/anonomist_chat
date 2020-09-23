@@ -15,7 +15,7 @@ export default {
   methods: {
     sendMessage() {
       const chatId = this.$route.query.chatId
-      connection.emit('message', { message: this.message, chat: { id: chatId } })
+      connection.emit('message', { message: this.message, chat: { id: chatId }, first: true })
       this.message = ''
     }
   }

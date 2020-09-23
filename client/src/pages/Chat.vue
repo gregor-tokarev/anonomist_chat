@@ -1,6 +1,7 @@
 <template>
   <div class="chat">
     <Message v-for="(message, index) in messages" :key="index" :text="message.message"></Message>
+    <button @click="leaveChat">Leave Chat</button>
     <MessageInput></MessageInput>
   </div>
 </template>
@@ -17,27 +18,36 @@ export default {
   components: { MessageInput, Message },
   data: () => ({}),
   beforeRouteLeave(to, from, next) {
-    connection.off('message')
     connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
-    this.clearMessages()
     sessionStorage.removeItem('chatId')
+    this.clearMessages()
+    connection.removeAllListeners('messageFormServer')
     next()
   },
   mounted() {
     sessionStorage.setItem('chatId', this.$route.query.chatId)
-    console.log('Mounted')
     this.startAddingMessages()
 
-    sessionStorage.getItem('chatId') && connection.emit('requestReconnect', sessionStorage.getItem('chatId'))
+    connection.on('messageFormServer', data => {
+      console.log(data)
+      connection.emit('message', { message: data, chatId: this.$route.query.chatId, first: false })
+    })
+
+    sessionStorage.getItem('chatId') && connection.emit('requestReconnect', sessionStorage.getItem('chatId'), history => {
+      this.setHistory(history)
+    })
 
     connection.on('partnerLeave', () => {
-      connection.off('message')
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
       this.$router.replace({ name: 'choose' })
     })
   },
   methods: {
-    ...mapActions(['startAddingMessages', 'clearMessages'])
+    ...mapActions(['startAddingMessages', 'clearMessages', 'setHistory']),
+    leaveChat() {
+      connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
+      this.$router.replace({ name: 'choose' })
+    }
   },
   computed: {
     ...mapGetters(['messages'])

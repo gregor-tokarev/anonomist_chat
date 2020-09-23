@@ -14,11 +14,13 @@ export default new Vuex.Store({
       Vue.set(state, 'users', value)
     },
     ADD_MESSAGE(state, message) {
-      console.log('message')
       state.messages.push(message)
     },
     CLEAR_MESSAGES(state) {
       state.messages = []
+    },
+    SET_HISTORY(state, history) {
+      state.messages = history
     }
   },
   actions: {
@@ -34,6 +36,9 @@ export default new Vuex.Store({
     },
     clearMessages({ commit }) {
       commit('CLEAR_MESSAGES')
+    },
+    setHistory({ commit }, history) {
+      commit('SET_HISTORY', history)
     }
   },
   getters: {

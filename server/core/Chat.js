@@ -7,7 +7,7 @@ class Chat {
         this.history = [];
     }
     
-    addMessage(author, message) {
+    addMessage({ message, author }) {
         this.history.push({
             message,
             author

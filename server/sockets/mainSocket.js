@@ -6,8 +6,9 @@ const User = require('../core/User');
 const usersInfo = { free: -1, online: -1 }
 const io = getIo();
 
+
 io.on('connection', socket => {
-  console.log(`${ socket.id } connected`)
+  let history = [];
   let user;
   let randomUser;
   let chat;
@@ -22,8 +23,6 @@ io.on('connection', socket => {
   });
   
   socket.on('joinSearch', userData => {
-    console.log('JoinSearch:')
-    console.log(chat, user, randomUser)
     user = new User(userData.age, userData.gender, userData.preferAge, userData.preferGender, socket.id);
     users.push(user);
     const allowUsers = waitingUsers.filter(u => u.free &&
@@ -45,37 +44,35 @@ io.on('connection', socket => {
   });
   
   socket.on('joinChat', (chatData, cb) => {
-    console.log('JoinCat:');
-    console.log(user);
     user.free = false;
     chat = chatData;
     socket.join(chatData.id);
     cb();
   });
   
-  // socket.on('requestReconnect', (chatId, cb) => {
-  //   console.log('Refresh:');
-  //   console.log(chat);
-  //   // socket.join(chatId);
-  // })
+  socket.on('requestReconnect', (chatId, cb) => {
+    console.log(history)
+    socket.join(chatId);
+    cb(history)
+  })
   
   socket.on('message', data => {
-    console.log('Message:');
     const message = {
       message: data.message,
       author: data.author
-    }
-    console.log(message)
-    io.to(data.chat.id).emit('messageFormServer', message);
+    };
+    history.push(message)
+    console.log(history)
+    
+    data.first && io.to(data.chat.id).emit('messageFormServer', message);
   });
   
   socket.on('leaveChat', data => {
-    // console.log('Leave chat:');
-    // console.log(data);
     usersInfo.free++;
     io.sockets.emit('usersInfo', usersInfo);
-    socket.leave(data.chatId, () => console.log(`${socket.id} leave`));
+    socket.leave(data.chatId);
     if (chat) {
+      history = [];
       data.first && io.to(chat.id).emit('partnerLeave', data.chatId);
       const userIndex = waitingUsers.findIndex(user => user.id === chat.you.id);
       waitingUsers.splice(userIndex, 1);
@@ -84,5 +81,4 @@ io.on('connection', socket => {
       randomUser = null;
     }
   });
-  
 });
