@@ -1,6 +1,7 @@
 <template>
   <div class="chat">
     <Message v-for="(message, index) in messages" :key="index" :text="message.message"></Message>
+    <button @click="leaveChat">Leave Chat</button>
     <MessageInput></MessageInput>
   </div>
 </template>
@@ -15,11 +16,10 @@ import MessageInput from '@/components/MessageInput'
 export default {
   name: 'Chat',
   components: { MessageInput, Message },
-  data: () => ({
-  }),
+  data: () => ({}),
   beforeRouteLeave(to, from, next) {
-    connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
     this.clearMessages()
+    connection.removeAllListeners('messageFormServer')
     next()
   },
   mounted() {
@@ -35,7 +35,11 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['startAddingMessages', 'clearMessages'])
+    ...mapActions(['startAddingMessages', 'clearMessages']),
+    leaveChat() {
+      connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
+      this.$router.replace({ name: 'choose' })
+    }
   },
   computed: {
     ...mapGetters(['messages'])

@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3828a78e-5955-468c-a7cd-e17d2e094559" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MessageInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MessageInput.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/Chat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Chat.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/sockets/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sockets/mainSocket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/sockets/mainSocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sockets/mainSocket.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +66,9 @@
       <workItem from="1600273953663" duration="1997000" />
       <workItem from="1600425448877" duration="2178000" />
       <workItem from="1600498021203" duration="5006000" />
+      <workItem from="1600667541307" duration="58000" />
+      <workItem from="1600699677993" duration="4320000" />
+      <workItem from="1600749721900" duration="5282000" />
     </task>
     <servers />
   </component>
