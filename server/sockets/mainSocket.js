@@ -23,7 +23,8 @@ io.on('connection', socket => {
     socket.on('joinSearch', userData => {
         user = new User(userData.age, userData.gender, userData.preferAge, userData.preferGender, socket.id);
         users.push(user);
-        const allowUsers = waitingUsers.filter(u => u.free &&
+        const allowUsers = waitingUsers.filter(u =>
+            u.free &&
             (user.age >= u.preferAge.min && user.age <= u.preferAge.max) &&
             (u.age >= user.preferAge.min && u.age <= u.preferAge.max) &&
             (user.gender === u.preferGender || u.preferGender === 'both') &&

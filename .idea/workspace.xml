@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3828a78e-5955-468c-a7cd-e17d2e094559" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Chat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Chat.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/sockets/mainSocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sockets/mainSocket.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
