@@ -18,26 +18,30 @@ export default {
   components: { MessageInput, Message },
   data: () => ({}),
   beforeRouteLeave(to, from, next) {
+    connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
+    sessionStorage.removeItem('chatId')
     this.clearMessages()
     connection.removeAllListeners('messageFormServer')
     next()
   },
   mounted() {
     sessionStorage.setItem('chatId', this.$route.query.chatId)
-
     this.startAddingMessages()
 
-    sessionStorage.getItem('chatId') && connection.emit('requestReconnect', this.$route.query.chatId)
+    const history = sessionStorage.getItem('messages')
+    history && this.setHistory(JSON.parse(history))
 
     connection.on('partnerLeave', () => {
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
+      sessionStorage.removeItem('messages')
       this.$router.replace({ name: 'choose' })
     })
   },
   methods: {
-    ...mapActions(['startAddingMessages', 'clearMessages']),
+    ...mapActions(['startAddingMessages', 'clearMessages', 'setHistory']),
     leaveChat() {
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
+      sessionStorage.removeItem('messages')
       this.$router.replace({ name: 'choose' })
     }
   },

@@ -26,7 +26,6 @@ export default {
   mounted() {
     connection.on('chatFound', chat => {
       connection.emit('joinChat', chat, () => {
-        console.log(chat.id)
         this.$router.push({ name: 'chat', query: { chatId: chat.id } })
       })
     })
