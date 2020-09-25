@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -36,7 +43,8 @@
       <option name="presentableId" value="Default" />
       <updated>1600844045141</updated>
       <workItem from="1600844047567" duration="2232000" />
-      <workItem from="1600849962108" duration="5140000" />
+      <workItem from="1600849962108" duration="10067000" />
+      <workItem from="1601021451738" duration="57000" />
     </task>
     <servers />
   </component>
@@ -44,6 +52,26 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1366" height="225" key="GridCell.Tab.0.bottom" timestamp="1600948396030">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1366" height="225" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1600948396030" />
+    <state width="1366" height="225" key="GridCell.Tab.0.center" timestamp="1600948396029">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1366" height="225" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1600948396029" />
+    <state width="1366" height="225" key="GridCell.Tab.0.left" timestamp="1600948396029">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1366" height="225" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1600948396029" />
+    <state width="1366" height="225" key="GridCell.Tab.0.right" timestamp="1600948396030">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1366" height="225" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1600948396030" />
+    <state x="100" y="100" width="1166" height="568" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1600951699651">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="100" y="100" width="1166" height="568" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1366.768@0.0.1366.768" timestamp="1600951699651" />
     <state x="0" y="0" width="583" height="768" key="find.popup" timestamp="1600860854089">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

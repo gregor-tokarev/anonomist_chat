@@ -29,7 +29,6 @@ export default {
     this.startAddingMessages()
 
     connection.on('messageFormServer', data => {
-      console.log(data)
       connection.emit('message', { message: data, chatId: this.$route.query.chatId, first: false })
     })
 
