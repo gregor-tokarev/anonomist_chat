@@ -27,7 +27,7 @@ export default {
   mounted() {
     sessionStorage.setItem('chatId', this.$route.query.chatId)
     this.startAddingMessages()
-
+    
     const history = sessionStorage.getItem('messages')
     history && this.setHistory(JSON.parse(history))
 

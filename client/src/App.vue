@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <v-app-bar></v-app-bar>
     <router-view/>
   </div>
 </template>

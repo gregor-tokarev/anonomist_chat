@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a85f53a-3798-4c17-bfdf-412a0edcced5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/assets/js/setMessageToSs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MessageInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MessageInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/js/setMessageToSs.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/js/setMessageToSs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/Chat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Chat.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Choose.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Choose.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/core/Chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/core/Chat.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/sockets/mainSocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/sockets/mainSocket.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,11 +72,34 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600921196885">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1600921196885" />
+    <state width="1920" height="328" key="GridCell.Tab.0.bottom" timestamp="1600967626281">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="328" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1600967626281" />
+    <state width="1920" height="328" key="GridCell.Tab.0.center" timestamp="1600967626281">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="328" key="GridCell.Tab.0.center/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1600967626281" />
+    <state width="1920" height="328" key="GridCell.Tab.0.left" timestamp="1600967626281">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="328" key="GridCell.Tab.0.left/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1600967626281" />
+    <state width="1920" height="328" key="GridCell.Tab.0.right" timestamp="1600967626281">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1920" height="328" key="GridCell.Tab.0.right/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1600967626281" />
+    <state x="100" y="100" width="1720" height="880" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1600956804900">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="100" y="100" width="1720" height="880" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1600956804900" />
     <state x="100" y="100" width="1720" height="880" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1600925201939">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
