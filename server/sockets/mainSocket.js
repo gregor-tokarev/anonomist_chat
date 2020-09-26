@@ -6,9 +6,7 @@ const User = require('../core/User');
 const usersInfo = { free: -1, online: -1 }
 const io = getIo();
 
-
 io.on('connection', socket => {
-  let history = [];
   let user;
   let randomUser;
   let chat;
@@ -51,29 +49,24 @@ io.on('connection', socket => {
   });
   
   socket.on('requestReconnect', (chatId, cb) => {
-    console.log(history)
     socket.join(chatId);
-    cb(history)
   })
   
   socket.on('message', data => {
     const message = {
       message: data.message,
       author: data.author
-    };
-    history.push(message)
-    console.log(history)
+    }
     
-    data.first && io.to(data.chat.id).emit('messageFormServer', message);
+    io.to(data.chat.id).emit('messageFormServer', message);
   });
   
   socket.on('leaveChat', data => {
     usersInfo.free++;
     io.sockets.emit('usersInfo', usersInfo);
     socket.leave(data.chatId);
+    data.first && io.to(data.chatId).emit('partnerLeave', data.chatId);
     if (chat) {
-      history = [];
-      data.first && io.to(chat.id).emit('partnerLeave', data.chatId);
       const userIndex = waitingUsers.findIndex(user => user.id === chat.you.id);
       waitingUsers.splice(userIndex, 1);
       chat = null;
@@ -81,4 +74,5 @@ io.on('connection', socket => {
       randomUser = null;
     }
   });
+  
 });

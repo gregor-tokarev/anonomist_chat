@@ -28,16 +28,13 @@ export default {
     sessionStorage.setItem('chatId', this.$route.query.chatId)
     this.startAddingMessages()
 
-    connection.on('messageFormServer', data => {
-      connection.emit('message', { message: data, chatId: this.$route.query.chatId, first: false })
-    })
-
-    sessionStorage.getItem('chatId') && connection.emit('requestReconnect', sessionStorage.getItem('chatId'), history => {
-      this.setHistory(history)
-    })
+    const history = sessionStorage.getItem('messages')
+    history && this.setHistory(JSON.parse(history))
 
     connection.on('partnerLeave', () => {
+      console.log('leave')
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
+      sessionStorage.removeItem('messages')
       this.$router.replace({ name: 'choose' })
     })
   },
@@ -45,6 +42,7 @@ export default {
     ...mapActions(['startAddingMessages', 'clearMessages', 'setHistory']),
     leaveChat() {
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
+      sessionStorage.removeItem('messages')
       this.$router.replace({ name: 'choose' })
     }
   },

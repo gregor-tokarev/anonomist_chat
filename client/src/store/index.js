@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import connection from '../assets/js/socket'
+import setMessageToSs from '../assets/js/setMessageToSs'
 
 Vue.use(Vuex)
 
@@ -32,6 +33,7 @@ export default new Vuex.Store({
     startAddingMessages({ commit }) {
       connection.on('messageFormServer', message => {
         commit('ADD_MESSAGE', message)
+        setMessageToSs(message)
       })
     },
     clearMessages({ commit }) {
