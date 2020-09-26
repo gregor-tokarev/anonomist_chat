@@ -1,24 +1,26 @@
 <template>
   <div class="chat">
-    <Message v-for="(message, index) in messages" :key="index" :text="message.message"></Message>
-    <button @click="leaveChat">Leave Chat</button>
-    <MessageInput></MessageInput>
+    <v-container class="cont">
+      <v-btn class="btn" color="primary" @click="leaveChat">Leave Chat</v-btn>
+      <MessageContainer :messages="messages"></MessageContainer>
+      <MessageInput></MessageInput>
+    </v-container>
   </div>
 </template>
 
 <script>
 
-import Message from '../components/Message'
 import connection from '../assets/js/socket'
 import { mapActions, mapGetters } from 'vuex'
 import MessageInput from '@/components/MessageInput'
+import MessageContainer from '../components/MessageContainer'
 
 export default {
   name: 'Chat',
-  components: { MessageInput, Message },
+  components: { MessageContainer, MessageInput },
   data: () => ({}),
   beforeRouteLeave(to, from, next) {
-    connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
+    connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
     sessionStorage.removeItem('chatId')
     this.clearMessages()
     connection.removeAllListeners('messageFormServer')
@@ -27,7 +29,9 @@ export default {
   mounted() {
     sessionStorage.setItem('chatId', this.$route.query.chatId)
     this.startAddingMessages()
-    
+
+    connection.emit('requestReconnect', this.$route.query.chatId)
+
     const history = sessionStorage.getItem('messages')
     history && this.setHistory(JSON.parse(history))
 
@@ -51,6 +55,15 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.cont {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 </style>

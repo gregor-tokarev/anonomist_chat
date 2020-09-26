@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Choose from '../pages/Choose'
 import Chat from '../pages/Chat'
+import Wait from '../pages/Wait'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/chat',
     name: 'chat',
     component: Chat
+  },
+  {
+    path: '/load',
+    name: 'load',
+    component: Wait
   },
   {
     path: '*',

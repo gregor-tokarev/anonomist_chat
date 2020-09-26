@@ -1,11 +1,40 @@
 <template>
   <div class="choose">
-    Age <input type="number" v-model="age" class="input">
-    preferAge min <input type="number" v-model.number="preferAge.min" class="input">
-    preferAge max<input type="number" v-model.number="preferAge.max" class="input">
-    gender <input type="text" v-model="gender" class="input">
-    preferGender <input type="text" v-model="preferGender" class="input">
-    <button @click="joinSearch">start</button>
+    <v-container>
+      <v-text-field type="number" label="Age" v-model="age" class="input"></v-text-field>
+      <v-range-slider
+        v-model="preferAge.range"
+        :max="preferAge.max"
+        :min="preferAge.min"
+        hide-details
+        label="Prefer Age"
+        class="align-center"
+      >
+        <template #prepend>
+          <v-text-field
+            :value="preferAge.range[0]"
+            class="mt-0 pt-0"
+            single-line
+            type="number"
+            style="width: 60px"
+            @change="$set(range, 0, $event)"
+          ></v-text-field>
+        </template>
+        <template #append>
+          <v-text-field
+            :value="preferAge.range[1]"
+            class="mt-0 pt-0"
+            single-line
+            type="number"
+            style="width: 60px"
+            @change="$set(preferAge.range, 1, $event)"
+          ></v-text-field>
+        </template>
+      </v-range-slider>
+      <v-select label="Gender" :items="genders" v-model="gender" class="input"></v-select>
+      <v-select label="Prefer Gender" :items="genders" v-model="preferGender" class="input"></v-select>
+      <v-btn :disabled="eneableButton" color="primary" @click="joinSearch">Start</v-btn>
+    </v-container>
   </div>
 </template>
 
@@ -17,11 +46,18 @@ export default {
   data: () => ({
     age: 15,
     preferAge: {
+      range: [0, 60],
       min: 12,
-      max: 18
+      max: 60
     },
+    eneableButton: false,
     gender: 'both',
-    preferGender: 'both'
+    preferGender: 'both',
+    genders: [
+      'Male',
+      'Female',
+      'both'
+    ]
   }),
   mounted() {
     connection.on('chatFound', chat => {
@@ -32,11 +68,15 @@ export default {
   },
   methods: {
     joinSearch() {
-      connection.emit('joinSearch', {
-        age: this.age,
-        preferAge: this.preferAge,
-        gender: this.gender,
-        preferGender: this.preferGender
+      this.$router.replace({
+        name: 'load',
+        query: {
+          age: this.age,
+          preferAgeMin: this.preferAge.min,
+          preferAgeMax: this.preferAge.max,
+          gender: this.gender,
+          preferGender: this.preferGender
+        }
       })
     }
   }
@@ -45,6 +85,7 @@ export default {
 
 <style scoped lang="scss">
 .choose {
+  color: #000;
   min-height: 100vh;
 
   .input {
