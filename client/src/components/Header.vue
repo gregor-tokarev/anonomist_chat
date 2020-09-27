@@ -1,26 +1,28 @@
-<template functional>
-  <header class="header">
-    <div class="header__inner">
-      <div class="logo">
-        AName
-      </div>
-    </div>
-  </header>
+<template>
+  <v-app-bar app>
+    <v-icon @click="changeTheme">mdi-brightness-4</v-icon>
+    <v-spacer></v-spacer>
+    {{ usersInfo }}
+  </v-app-bar>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'Header'
+  name: 'Header',
+  methods: {
+    changeTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      localStorage.setItem('theme', this.$vuetify.theme.dark)
+    }
+  },
+  computed: {
+    ...mapGetters(['usersInfo'])
+  }
 }
 </script>
 
 <style scoped lang="scss">
-.header {
-  padding: 15px;
 
-  &__inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-}
 </style>

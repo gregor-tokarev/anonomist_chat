@@ -46,6 +46,9 @@ export default new Vuex.Store({
   getters: {
     messages(state) {
       return state.messages
+    },
+    usersInfo(state) {
+      return state.users
     }
   }
 })

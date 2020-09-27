@@ -1,8 +1,6 @@
 <template>
   <v-app id="app">
-    <v-app-bar app>
-      <v-icon @click="changeTheme">mdi-brightness-4</v-icon>
-    </v-app-bar>
+    <Header></Header>
     <v-main class="content">
       <router-view/>
     </v-main>
@@ -11,14 +9,12 @@
 
 <script>
 import { mapActions } from 'vuex'
+import Header from './components/Header'
 
 export default {
+  components: { Header },
   methods: {
-    ...mapActions(['setUsersInfo']),
-    changeTheme() {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-      localStorage.setItem('theme', this.$vuetify.theme.dark)
-    }
+    ...mapActions(['setUsersInfo'])
   },
   mounted() {
     this.setUsersInfo()

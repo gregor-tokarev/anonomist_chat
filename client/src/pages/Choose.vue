@@ -39,8 +39,6 @@
 </template>
 
 <script>
-import connection from '../assets/js/socket'
-
 export default {
   name: 'Choose',
   data: () => ({
@@ -60,20 +58,30 @@ export default {
     ]
   }),
   mounted() {
-    connection.on('chatFound', chat => {
-      connection.emit('joinChat', chat, () => {
-        this.$router.push({ name: 'chat', query: { chatId: chat.id } })
-      })
-    })
+    const searchParams = sessionStorage.getItem('searchParams')
+    if (searchParams) {
+      const { age, preferAge, gender, preferGender } = JSON.parse(searchParams)
+      this.age = age
+      this.preferGender = preferGender
+      this.preferAge.range = preferAge
+      this.gender = gender
+    }
   },
   methods: {
     joinSearch() {
+      sessionStorage.setItem('searchParams', JSON.stringify({
+        age: this.age,
+        preferAge: this.preferAge.range,
+        gender: this.gender,
+        preferGender: this.preferGender
+      }))
+
       this.$router.replace({
         name: 'load',
         query: {
           age: this.age,
-          preferAgeMin: this.preferAge.min,
-          preferAgeMax: this.preferAge.max,
+          preferAgeMin: this.preferAge.range[0],
+          preferAgeMax: this.preferAge.range[1],
           gender: this.gender,
           preferGender: this.preferGender
         }

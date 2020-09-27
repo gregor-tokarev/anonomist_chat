@@ -22,8 +22,17 @@ export default {
     user: {}
   }),
   mounted() {
-    const out = new Promise((resolve, reject) => {
-      setTimeout(() => resolve(false), 10000)
+    // window.onbeforeunload = function() {
+    //   const xhr = new XMLHttpRequest()
+    //   xhr.open('GET', process.env.VUE_APP_SOCKET_SERVER_URL + '/conn', false)
+    //   xhr.send()
+    //   return false
+    // }
+
+    connection.on('chatFound', chat => {
+      connection.emit('joinChat', chat, () => {
+        this.$router.push({ name: 'chat', query: { chatId: chat.id } })
+      })
     })
 
     const { age, gender, preferGender, preferAgeMin, preferAgeMax } = this.$route.query
@@ -39,13 +48,12 @@ export default {
     }, user => {
       this.user = user
     })
-
-    Promise.race([out, this.waitFor]).then(ok => {
-      // ok ? this.$router.replace(this.destiny) : this
-    })
   },
   methods: {
     quitSearch() {
+      // const xhr = new XMLHttpRequest()
+      // xhr.open('GET', process.env.VUE_APP_SOCKET_SERVER_URL + '/conn', true)
+      // xhr.send()
       connection.emit('quitSearch', this.user.id, () => {
         this.$router.replace({ name: 'choose' })
       })

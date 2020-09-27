@@ -21,13 +21,12 @@ export default {
   data: () => ({}),
   beforeRouteLeave(to, from, next) {
     connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
-    sessionStorage.removeItem('chatId')
     this.clearMessages()
     connection.removeAllListeners('messageFormServer')
     next()
   },
   mounted() {
-    sessionStorage.setItem('chatId', this.$route.query.chatId)
+    localStorage.setItem('chatId', this.$route.query.chatId)
     this.startAddingMessages()
 
     connection.emit('requestReconnect', this.$route.query.chatId)
@@ -44,6 +43,7 @@ export default {
   methods: {
     ...mapActions(['startAddingMessages', 'clearMessages', 'setHistory']),
     leaveChat() {
+      localStorage.removeItem('chatId')
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: true })
       sessionStorage.removeItem('messages')
       this.$router.replace({ name: 'choose' })
