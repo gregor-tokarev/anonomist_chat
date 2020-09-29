@@ -2,7 +2,7 @@
   <v-app-bar app>
     <v-icon @click="changeTheme">mdi-brightness-4</v-icon>
     <v-spacer></v-spacer>
-    {{ usersInfo }}
+    Online: {{ usersInfo.online }}
   </v-app-bar>
 </template>
 
