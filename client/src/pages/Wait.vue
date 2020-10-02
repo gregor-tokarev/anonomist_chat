@@ -1,7 +1,10 @@
 <template>
   <div class="load-wrapper">
-    <v-btn @click="quitSearch">Disconnect</v-btn>
-    <v-progress-linear indeterminate class="loader"></v-progress-linear>
+    <div class="loader">
+      <h1 class="loader__text">Wait for opponent</h1>
+      <v-progress-linear indeterminate></v-progress-linear>
+      <v-btn class="mt-5" color="primary" @click="quitSearch">Stop Searching</v-btn>
+    </div>
   </div>
 </template>
 
@@ -54,11 +57,16 @@ export default {
 
 <style scoped lang="scss">
 .loader {
+  text-align: center;
   width: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -100%);
+
+  &__text {
+    text-align: center;
+  }
 }
 
 .load-wrapper {

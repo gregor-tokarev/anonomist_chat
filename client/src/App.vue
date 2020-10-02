@@ -24,6 +24,9 @@ export default {
 
 <style lang="scss">
 .content {
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto;
   position: relative;
 }
 
