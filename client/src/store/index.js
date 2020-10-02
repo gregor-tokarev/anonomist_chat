@@ -32,6 +32,7 @@ export default new Vuex.Store({
     },
     startAddingMessages({ commit }) {
       connection.on('messageFormServer', message => {
+        message.you = message.author === connection.id
         commit('ADD_MESSAGE', message)
         setMessageToSs(message)
       })

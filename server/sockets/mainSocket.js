@@ -89,7 +89,8 @@ io.on('connection', socket => {
   socket.on('message', data => {
     const message = {
       message: data.message,
-      author: data.author
+      author: socket.id,
+      time: Date.now()
     }
     
     io.to(data.chat.id).emit('messageFormServer', message);

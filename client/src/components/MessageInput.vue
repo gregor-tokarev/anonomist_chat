@@ -21,6 +21,7 @@ export default {
   }),
   methods: {
     sendMessage() {
+      if (!this.message) return
       const chatId = this.$route.query.chatId
       connection.emit('message', { message: this.message, chat: { id: chatId } })
       this.message = ''

@@ -1,7 +1,10 @@
 <template>
   <div class="chat">
     <v-container class="cont">
-      <v-btn class="btn" color="primary" @click="leaveChat">Leave Chat</v-btn>
+      <div class="header">
+        <p>{{ info }}</p>
+        <v-btn class="btn" color="primary" @click="leaveChat">Leave Chat</v-btn>
+      </div>
       <MessageContainer :messages="messages"></MessageContainer>
       <MessageInput></MessageInput>
     </v-container>
@@ -18,7 +21,9 @@ import MessageContainer from '../components/MessageContainer'
 export default {
   name: 'Chat',
   components: { MessageContainer, MessageInput },
-  data: () => ({}),
+  data: () => ({
+    info: 'Have a nice chat'
+  }),
   beforeRouteLeave(to, from, next) {
     this.clearMessages()
     connection.removeAllListeners('messageFormServer')
@@ -55,6 +60,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$color-pack: false;
+
+@import '~vuetify/src/styles/main.sass';
+
+.header {
+  border-bottom: 1px solid $primary;
+  display: flex;
+  justify-content: space-between;
+}
+
 .cont {
   position: absolute;
   top: 0;
