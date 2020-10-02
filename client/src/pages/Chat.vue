@@ -20,7 +20,6 @@ export default {
   components: { MessageContainer, MessageInput },
   data: () => ({}),
   beforeRouteLeave(to, from, next) {
-    connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
     this.clearMessages()
     connection.removeAllListeners('messageFormServer')
     next()

@@ -3,12 +3,13 @@ const { getIo } = require('../core/SocketManager');
 const Chat = require('../core/Chat');
 const User = require('../core/User');
 
-const usersInfo = { online: 0 }
+const usersInfo = { online: 0, free: 0 }
 const io = getIo();
 
 io.on('connection', socket => {
   let user;
   let randomUser;
+  let page;
   let chat;
   usersInfo.online++;
   io.sockets.emit('usersInfo', usersInfo);
@@ -18,6 +19,11 @@ io.on('connection', socket => {
     usersInfo.online--;
     io.sockets.emit('usersInfo', usersInfo);
     
+    if (page === 'load') {
+      usersInfo.free--;
+      io.sockets.emit('usersInfo', usersInfo);
+    }
+    
     if (user) {
       const userIndex = waitingUsers.findIndex(usr => usr.id === user.id);
       waitingUsers.splice(userIndex, 1);
@@ -25,6 +31,7 @@ io.on('connection', socket => {
   });
   
   socket.on('joinSearch', (userData, cb) => {
+    usersInfo.free++;
     io.sockets.emit('usersInfo', usersInfo);
     
     user = new User(userData.age, userData.gender, userData.preferAge, userData.preferGender, socket.id);
@@ -44,23 +51,31 @@ io.on('connection', socket => {
     } else {
       randomUser = allowUsers[Math.floor(Math.random() * allowUsers.length)];
       chat = new Chat(user, randomUser);
+      
+      usersInfo.free -= 2;
+      io.sockets.emit('usersInfo', usersInfo);
+      
       io.to(randomUser.socketId).emit('chatFound', chat);
       io.to(user.socketId).emit('chatFound', chat);
     }
     
   });
   
+  socket.on('changePage', changedPage => {
+    page = changedPage;
+  });
+  
   socket.on('quitSearch', (userId, cb) => {
     io.sockets.emit('usersInfo', usersInfo);
     const userIndex = waitingUsers.findIndex(user => user.id === userId);
     waitingUsers.splice(userIndex, 1);
+    usersInfo.free--;
+    io.sockets.emit('usersInfo', usersInfo);
     cb()
-  })
+  });
   
   socket.on('joinChat', (chatData, cb) => {
     user.free = false;
-    
-    io.sockets.emit('usersInfo', usersInfo);
     
     chat = chatData;
     socket.join(chatData.id);
@@ -69,7 +84,7 @@ io.on('connection', socket => {
   
   socket.on('requestReconnect', chatId => {
     socket.join(chatId);
-  })
+  });
   
   socket.on('message', data => {
     const message = {

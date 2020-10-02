@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Choose from '../pages/Choose'
 import Chat from '../pages/Chat'
 import Wait from '../pages/Wait'
+import connection from '../assets/js/socket'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  connection.emit('changePage', to.name)
+  next()
 })
 
 export default router

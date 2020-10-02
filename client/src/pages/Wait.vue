@@ -22,13 +22,6 @@ export default {
     user: {}
   }),
   mounted() {
-    // window.onbeforeunload = function() {
-    //   const xhr = new XMLHttpRequest()
-    //   xhr.open('GET', process.env.VUE_APP_SOCKET_SERVER_URL + '/conn', false)
-    //   xhr.send()
-    //   return false
-    // }
-
     connection.on('chatFound', chat => {
       connection.emit('joinChat', chat, () => {
         this.$router.push({ name: 'chat', query: { chatId: chat.id } })
@@ -51,9 +44,6 @@ export default {
   },
   methods: {
     quitSearch() {
-      // const xhr = new XMLHttpRequest()
-      // xhr.open('GET', process.env.VUE_APP_SOCKET_SERVER_URL + '/conn', true)
-      // xhr.send()
       connection.emit('quitSearch', this.user.id, () => {
         this.$router.replace({ name: 'choose' })
       })

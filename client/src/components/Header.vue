@@ -2,7 +2,7 @@
   <v-app-bar app>
     <v-icon @click="changeTheme">mdi-brightness-4</v-icon>
     <v-spacer></v-spacer>
-    Online: {{ usersInfo.online }}
+    Online: {{ usersInfo.online }} | In search: {{ usersInfo.free }}
   </v-app-bar>
 </template>
 

@@ -15,12 +15,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
-app.get('/conn', ((req, res, next) => {
-    console.log('conn');
-    res.end();
-}))
-
 const server = app.listen(8000);
 const io = new SocketServer(server);
 setIo(io);
