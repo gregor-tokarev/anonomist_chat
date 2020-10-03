@@ -6,7 +6,9 @@
         <v-btn class="btn" color="primary" @click="leaveChat">Leave Chat</v-btn>
       </div>
       <MessageContainer :messages="messages"></MessageContainer>
-      <MessageInput></MessageInput>
+      <div
+        :is="info === 'Have a nice chat' ? 'MessageInput' : 'LeavePartner'"
+        :disabled="info === 'Partner leave'"></div>
     </v-container>
   </div>
 </template>
@@ -17,10 +19,11 @@ import connection from '../assets/js/socket'
 import { mapActions, mapGetters } from 'vuex'
 import MessageInput from '@/components/MessageInput'
 import MessageContainer from '../components/MessageContainer'
+import LeavePartner from '@/components/LeavePartner'
 
 export default {
   name: 'Chat',
-  components: { MessageContainer, MessageInput },
+  components: { MessageContainer, MessageInput, LeavePartner },
   data: () => ({
     info: 'Have a nice chat'
   }),
@@ -40,8 +43,9 @@ export default {
 
     connection.on('partnerLeave', () => {
       connection.emit('leaveChat', { chatId: this.$route.query.chatId, first: false })
-      sessionStorage.removeItem('messages')
-      this.$router.replace({ name: 'choose' })
+      this.info = 'Partner leave'
+      // sessionStorage.removeItem('messages')
+      // this.$router.replace({ name: 'choose' })
     })
   },
   methods: {
@@ -60,12 +64,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$color-pack: false;
-
-@import '~vuetify/src/styles/main.sass';
-
 .header {
-  border-bottom: 1px solid $primary;
   display: flex;
   justify-content: space-between;
 }

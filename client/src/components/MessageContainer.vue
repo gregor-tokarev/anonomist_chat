@@ -1,5 +1,5 @@
 <template>
-  <div ref="container" class="messages px-3">
+  <div ref="container" class="messages px-3 pt-4">
     <Message v-for="(message, index) in messages" :key="index" :message="message"></Message>
   </div>
 </template>

@@ -2,7 +2,7 @@
   <div class="message pb-1" :class="{ 'yourMessage': message.you }">
     <div
       class="px-1 message__inner"
-      :class="{ 'primary': !message.you, 'teal': message.you }"
+      :class="{ 'primary': !message.you, 'teal': message.you, 'yourMessage': message.you }"
     >
       {{ message.message }}
     </div>
@@ -32,5 +32,9 @@ export default {
 
 .yourMessage {
   text-align: right;
+
+  div {
+    text-align: left;
+  }
 }
 </style>
