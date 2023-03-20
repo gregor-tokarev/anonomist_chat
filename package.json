@@ -2,6 +2,9 @@
   "name": "anonomist_chat",
   "version": "1.0.0",
   "workspaces": ["client", "server"],
+  "engines": {
+    "node": "^16"
+  },
   "scripts": {
     "build:front": "cd client && npm i && npm run build"
   }
